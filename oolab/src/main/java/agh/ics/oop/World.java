@@ -9,7 +9,8 @@ public class World {
 
         List<MoveDirection> directions = OptionParser.convert(args);
         List<Vector2d> positions = List.of(new Vector2d(2,2), new Vector2d(3,4));
-        Simulation simulation = new Simulation(positions, directions);
+        RectangularMap map = new RectangularMap(4, 4);
+        Simulation simulation = new Simulation(map, positions, directions);
         simulation.run();
     }
 }
