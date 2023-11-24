@@ -60,10 +60,7 @@ public class OptionsParserTest {
     public void testNotAppropriateArgument()
     {
         String[] arg = new String[]{"h"};
-        var result = OptionParser.convert(arg).toArray();
-
-        MoveDirection[] expected = new MoveDirection[0];
-        Assertions.assertArrayEquals(expected, result);
+        Assertions.assertThrows(IllegalArgumentException.class,  () -> OptionParser.convert(arg).toArray());
     }
 
     @Test
@@ -80,10 +77,8 @@ public class OptionsParserTest {
     public void testCase2()
     {
         String[] arg = new String[]{"h", "f", "s", "b", "c", "l", "r"};
-        var result = OptionParser.convert(arg).toArray();
+        Assertions.assertThrows(IllegalArgumentException.class,  () -> OptionParser.convert(arg).toArray());
 
-        MoveDirection[] expected = new MoveDirection[] {MoveDirection.FORWARD, MoveDirection.BACKWARD, MoveDirection.LEFT, MoveDirection.RIGHT};
-        Assertions.assertArrayEquals(expected, result);
     }
 
     @Test
@@ -107,9 +102,6 @@ public class OptionsParserTest {
     public void testCase4()
     {
         String[] arg = new String[]{"ff", "sf", "lp", "13", "k", "left", "right"};
-        var result = OptionParser.convert(arg).toArray();
-
-        MoveDirection[] expected = new MoveDirection[0];
-        Assertions.assertArrayEquals(expected, result);
+        Assertions.assertThrows(IllegalArgumentException.class,  () -> OptionParser.convert(arg).toArray());
     }
 }

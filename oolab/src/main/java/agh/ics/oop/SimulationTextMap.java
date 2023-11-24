@@ -1,6 +1,7 @@
 package agh.ics.oop;
 
 import agh.ics.oop.model.*;
+import agh.ics.oop.model.exception.PositionAlreadyOccupiedException;
 
 import java.util.List;
 
@@ -17,11 +18,18 @@ public class SimulationTextMap {
 
     public void run()
     {
+        var string_iterator = _strings.iterator();
+        while(string_iterator.hasNext()) {
+            try {
+                _map.place(string_iterator.next());
+            }
+            catch (PositionAlreadyOccupiedException ex) {
+                System.out.println(ex.getMessage());
+                string_iterator.remove();
+            }
+        }
         if(_strings.isEmpty())
             return;
-        for(var a : _strings) {
-            _map.place(a);
-        }
         int it = 0;
         System.out.println(_map);
         for(var move : _moves)

@@ -1,14 +1,14 @@
 package agh.ics.oop;
 
 import agh.ics.oop.model.*;
+import agh.ics.oop.model.exception.PositionAlreadyOccupiedException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class IntegrationTest {
 
     @Test
-    public void rotateRight()
-    {
+    public void rotateRight() throws PositionAlreadyOccupiedException {
         String[] arg = new String[] {"r", "r", "r", "r"};
         var result = OptionParser.convert(arg).toArray();
 
@@ -40,8 +40,7 @@ public class IntegrationTest {
     }
 
     @Test
-    public void rotateLeft()
-    {
+    public void rotateLeft() throws PositionAlreadyOccupiedException {
         String[] arg = new String[] {"l", "l", "l", "l"};
         var result = OptionParser.convert(arg).toArray();
 
@@ -73,8 +72,7 @@ public class IntegrationTest {
     }
 
     @Test
-    public void rotateMix1()
-    {
+    public void rotateMix1() throws PositionAlreadyOccupiedException {
         String[] arg = new String[] {"r", "l", "l", "r"};
         var result = OptionParser.convert(arg).toArray();
 
@@ -106,8 +104,7 @@ public class IntegrationTest {
     }
 
     @Test
-    public void rotateMix2()
-    {
+    public void rotateMix2() throws PositionAlreadyOccupiedException {
         String[] arg = new String[] {"r", "r", "r", "l", "l", "r"};
         var result = OptionParser.convert(arg).toArray();
 
@@ -148,8 +145,7 @@ public class IntegrationTest {
 
 
     @Test
-    public void toTopBorder()
-    {
+    public void toTopBorder() throws PositionAlreadyOccupiedException {
         String[] arg = new String[] {"f", "f", "f", "b"};
         var result = OptionParser.convert(arg).toArray();
 
@@ -180,8 +176,7 @@ public class IntegrationTest {
     }
 
     @Test
-    public void toBotBorder()
-    {
+    public void toBotBorder() throws PositionAlreadyOccupiedException {
         String[] arg = new String[] {"b", "b", "b", "f"};
         var result = OptionParser.convert(arg).toArray();
 
@@ -212,8 +207,7 @@ public class IntegrationTest {
     }
 
     @Test
-    public void toRightBorder()
-    {
+    public void toRightBorder() throws PositionAlreadyOccupiedException {
         String[] arg = new String[] {"r", "f", "f", "f", "b"};
         var result = OptionParser.convert(arg).toArray();
 
@@ -248,8 +242,7 @@ public class IntegrationTest {
     }
 
     @Test
-    public void toLeftBorder()
-    {
+    public void toLeftBorder() throws PositionAlreadyOccupiedException {
         String[] arg = new String[] {"r", "b", "b", "b", "f"};
         var result = OptionParser.convert(arg).toArray();
 

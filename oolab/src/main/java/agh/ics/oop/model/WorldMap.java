@@ -1,5 +1,7 @@
 package agh.ics.oop.model;
 
+import agh.ics.oop.model.exception.PositionAlreadyOccupiedException;
+
 /**
  * The interface responsible for interacting with the map of the world.
  * Assumes that Vector2d and MoveDirection classes are defined.
@@ -12,9 +14,9 @@ public interface WorldMap<T, P> extends MoveValidator {
      * Place a animal on the map.
      *
      * @param animal The animal to place on the map.
-     * @return True if the animal was placed. The animal cannot be placed if the move is not valid.
+     * @throws PositionAlreadyOccupiedException if the animal is placed on occupied place. In this case the method does nothing.
      */
-    boolean place(T animal);
+    void place(T animal) throws PositionAlreadyOccupiedException;
 
     /**
      * Moves an animal (if it is present on the map) according to specified direction.

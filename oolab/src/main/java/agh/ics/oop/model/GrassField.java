@@ -1,5 +1,7 @@
 package agh.ics.oop.model;
 
+import agh.ics.oop.model.exception.PositionAlreadyOccupiedException;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,14 +18,16 @@ public class GrassField extends AbstractWorldMap{
     }
 
     @Override
-    public boolean place(WorldElement element) {
-        if (super.place(element)) {
-            updateSizeOfMap(element.getPosition());
-            return true;
-        }
-        else {
-            return false;
-        }
+    public void place(WorldElement element) throws PositionAlreadyOccupiedException{
+        super.place(element);
+        updateSizeOfMap(element.getPosition());
+    }
+
+    @Override
+    public void move(WorldElement animal, MoveDirection direction) {
+        super.move(animal, direction);
+        var position = animal.getPosition();
+        if (objectAt(position) == animal) updateSizeOfMap(position);
     }
 
     @Override
