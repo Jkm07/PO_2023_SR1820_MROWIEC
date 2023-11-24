@@ -6,7 +6,7 @@ import agh.ics.oop.model.exception.PositionAlreadyOccupiedException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Simulation {
+public class Simulation implements Runnable{
     private final List<Animal> _animals;
     private final List<MoveDirection> _moves;
     private final WorldMap<WorldElement, Vector2d> _map;
@@ -20,6 +20,7 @@ public class Simulation {
         _moves = moves;
     }
 
+    @Override
     public void run()
     {
         var animal_iterator = _animals.iterator();

@@ -2,6 +2,7 @@ package agh.ics.oop.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class TextMap implements WorldMap<String, Integer>{
 
@@ -51,6 +52,11 @@ public class TextMap implements WorldMap<String, Integer>{
 
     @Override
     public Boundary<Integer> getCurrentBounds() {
+        return null;
+    }
+
+    @Override
+    public UUID getId() {
         return null;
     }
 
