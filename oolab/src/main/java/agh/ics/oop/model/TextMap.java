@@ -49,6 +49,11 @@ public class TextMap implements WorldMap<String, Integer>{
         return positionBelongToList(position) ? _elements.get(position) : null;
     }
 
+    @Override
+    public Boundary<Integer> getCurrentBounds() {
+        return null;
+    }
+
     private boolean positionBelongToList(Integer position) {
         return 0 <= position && position < _elements.size();
     }

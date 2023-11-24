@@ -41,4 +41,6 @@ public interface WorldMap<T, P> extends MoveValidator {
      * @return animal or null if the position is not occupied.
      */
     T objectAt(P position);
+
+    Boundary<P> getCurrentBounds();
 }

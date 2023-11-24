@@ -11,13 +11,9 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
 
     protected final Map<Vector2d, WorldElement> _elements;
     private final MapVisualizer _visualizer;
-    protected Vector2d _maxVector;
-    protected Vector2d _minVector;
 
-    public AbstractWorldMap(Vector2d minVector, Vector2d maxVector)
+    public AbstractWorldMap()
     {
-        _maxVector = maxVector;
-        _minVector = minVector;
         _visualizer = new MapVisualizer(this);
         _elements = new HashMap<>();
     }
@@ -58,7 +54,8 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
 
     @Override
     public String toString() {
-        return _visualizer.draw(_minVector, _maxVector);
+        var boundary = getCurrentBounds();
+        return _visualizer.draw(boundary.bottomLeft(), boundary.topRight());
     }
 
     public Collection<WorldElement> getElements() {

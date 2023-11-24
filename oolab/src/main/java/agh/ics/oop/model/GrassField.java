@@ -10,9 +10,11 @@ import java.util.stream.Stream;
 public class GrassField extends AbstractWorldMap{
 
     private final Map<Vector2d, Grass> _grassElements;
+    private Vector2d _topRight;
+    private Vector2d _bottomLeft;
 
     public GrassField(int quantityOfGrassFields) {
-        super(null, null);
+        super();
         _grassElements = new HashMap<>();
         generateGrass(quantityOfGrassFields);
     }
@@ -45,6 +47,11 @@ public class GrassField extends AbstractWorldMap{
     }
 
     @Override
+    public Boundary<Vector2d> getCurrentBounds() {
+        return new Boundary<>(_bottomLeft, _topRight);
+    }
+
+    @Override
     public Collection<WorldElement> getElements() {
         return Stream.concat(super.getElements().stream(), _grassElements.values().stream()).toList();
     }
@@ -67,7 +74,7 @@ public class GrassField extends AbstractWorldMap{
 
     private void updateSizeOfMap(Vector2d vector) {
 
-        _maxVector = _maxVector != null ? _maxVector.upperRight(vector) : vector;
-        _minVector = _minVector != null ? _minVector.lowerLeft(vector) : vector;
+        _topRight = _topRight != null ? _topRight.upperRight(vector) : vector;
+        _bottomLeft = _bottomLeft != null ? _bottomLeft.lowerLeft(vector) : vector;
     }
 }
