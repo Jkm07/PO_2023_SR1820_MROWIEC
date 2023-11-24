@@ -5,7 +5,6 @@ public class RectangularMap extends AbstractWorldMap {
     private final Boundary<Vector2d> _boundary;
     public RectangularMap(int width, int height)
     {
-        super();
         _boundary = new Boundary<>(new Vector2d(0, 0), new Vector2d(width, height));
     }
     @Override

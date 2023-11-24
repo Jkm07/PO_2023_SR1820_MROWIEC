@@ -14,7 +14,6 @@ public class GrassField extends AbstractWorldMap{
     private Vector2d _bottomLeft;
 
     public GrassField(int quantityOfGrassFields) {
-        super();
         _grassElements = new HashMap<>();
         generateGrass(quantityOfGrassFields);
     }
