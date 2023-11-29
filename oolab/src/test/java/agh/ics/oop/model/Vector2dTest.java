@@ -143,13 +143,13 @@ public class Vector2dTest {
 
         Vector2d result = first.upperRight(second);
 
-        Assertions.assertEquals(Math.max(first.getX(), second.getX()), result.getX());
-        Assertions.assertEquals(Math.max(first.getY(), second.getY()), result.getY());
+        Assertions.assertEquals(Math.max(first.x(), second.x()), result.x());
+        Assertions.assertEquals(Math.max(first.y(), second.y()), result.y());
 
         result = second.upperRight(first);
 
-        Assertions.assertEquals(Math.max(first.getX(), second.getX()), result.getX());
-        Assertions.assertEquals(Math.max(first.getY(), second.getY()), result.getY());
+        Assertions.assertEquals(Math.max(first.x(), second.x()), result.x());
+        Assertions.assertEquals(Math.max(first.y(), second.y()), result.y());
     }
 
     @Test
@@ -157,8 +157,8 @@ public class Vector2dTest {
     {
         Vector2d vector = new Vector2d(1, 1);
         Vector2d result = vector.upperRight(null);
-        Assertions.assertEquals(vector.getX(), result.getX());
-        Assertions.assertEquals(vector.getY(), result.getY());
+        Assertions.assertEquals(vector.x(), result.x());
+        Assertions.assertEquals(vector.y(), result.y());
     }
 
     @ParameterizedTest
@@ -169,13 +169,13 @@ public class Vector2dTest {
 
         Vector2d result = first.lowerLeft(second);
 
-        Assertions.assertEquals(Math.min(first.getX(), second.getX()), result.getX());
-        Assertions.assertEquals(Math.min(first.getY(), second.getY()), result.getY());
+        Assertions.assertEquals(Math.min(first.x(), second.x()), result.x());
+        Assertions.assertEquals(Math.min(first.y(), second.y()), result.y());
 
         result = second.lowerLeft(first);
 
-        Assertions.assertEquals(Math.min(first.getX(), second.getX()), result.getX());
-        Assertions.assertEquals(Math.min(first.getY(), second.getY()), result.getY());
+        Assertions.assertEquals(Math.min(first.x(), second.x()), result.x());
+        Assertions.assertEquals(Math.min(first.y(), second.y()), result.y());
     }
 
     @Test
@@ -183,8 +183,8 @@ public class Vector2dTest {
     {
         Vector2d vector = new Vector2d(1, 1);
         Vector2d result = vector.lowerLeft(null);
-        Assertions.assertEquals(vector.getX(), result.getX());
-        Assertions.assertEquals(vector.getY(), result.getY());
+        Assertions.assertEquals(vector.x(), result.x());
+        Assertions.assertEquals(vector.y(), result.y());
     }
 
     @ParameterizedTest
@@ -195,13 +195,13 @@ public class Vector2dTest {
 
         Vector2d result = first.add(second);
 
-        Assertions.assertEquals(first.getX() + second.getX(), result.getX());
-        Assertions.assertEquals(first.getY() + second.getY(), result.getY());
+        Assertions.assertEquals(first.x() + second.x(), result.x());
+        Assertions.assertEquals(first.y() + second.y(), result.y());
 
         result = second.add(first);
 
-        Assertions.assertEquals(second.getX() + first.getX(), result.getX());
-        Assertions.assertEquals(second.getY() + first.getY(), result.getY());
+        Assertions.assertEquals(second.x() + first.x(), result.x());
+        Assertions.assertEquals(second.y() + first.y(), result.y());
     }
 
     @Test
@@ -209,8 +209,8 @@ public class Vector2dTest {
     {
         Vector2d vector = new Vector2d(1, 1);
         Vector2d result = vector.add(null);
-        Assertions.assertEquals(vector.getX(), result.getX());
-        Assertions.assertEquals(vector.getY(), result.getY());
+        Assertions.assertEquals(vector.x(), result.x());
+        Assertions.assertEquals(vector.y(), result.y());
     }
 
     @ParameterizedTest
@@ -221,13 +221,13 @@ public class Vector2dTest {
 
         Vector2d result = first.subtract(second);
 
-        Assertions.assertEquals(first.getX() - second.getX(), result.getX());
-        Assertions.assertEquals(first.getY() - second.getY(), result.getY());
+        Assertions.assertEquals(first.x() - second.x(), result.x());
+        Assertions.assertEquals(first.y() - second.y(), result.y());
 
         result = second.subtract(first);
 
-        Assertions.assertEquals(second.getX() - first.getX(), result.getX());
-        Assertions.assertEquals(second.getY() - first.getY(), result.getY());
+        Assertions.assertEquals(second.x() - first.x(), result.x());
+        Assertions.assertEquals(second.y() - first.y(), result.y());
     }
 
     @Test
@@ -235,8 +235,8 @@ public class Vector2dTest {
     {
         Vector2d vector = new Vector2d(1, 1);
         Vector2d result = vector.subtract(null);
-        Assertions.assertEquals(vector.getX(), result.getX());
-        Assertions.assertEquals(vector.getY(), result.getY());
+        Assertions.assertEquals(vector.x(), result.x());
+        Assertions.assertEquals(vector.y(), result.y());
     }
 
     @ParameterizedTest
@@ -246,7 +246,7 @@ public class Vector2dTest {
         Vector2d vector = new Vector2d(x, y);
         Vector2d result = vector.opposite();
 
-        Assertions.assertEquals(-vector.getX(), result.getX());
-        Assertions.assertEquals(-vector.getY(), result.getY());
+        Assertions.assertEquals(-vector.x(), result.x());
+        Assertions.assertEquals(-vector.y(), result.y());
     }
 }

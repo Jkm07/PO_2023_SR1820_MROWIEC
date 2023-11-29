@@ -2,12 +2,13 @@ package agh.ics.oop;
 
 import agh.ics.oop.model.MoveDirection;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class OptionParser {
-    public static MoveDirection[] convert(String[] args)
+    public static List<MoveDirection> convert(String[] args)
     {
-        var list = new ArrayList<MoveDirection>();
+        var list = new LinkedList<MoveDirection>();
 
         for(var arg : args)
         {
@@ -15,10 +16,7 @@ public class OptionParser {
             if(move != null)
                 list.add(move);
         }
-
-        var out = new MoveDirection[list.size()];
-        list.toArray(out);
-        return out;
+        return list;
     }
 
     private static MoveDirection convertArgument(String arg)
