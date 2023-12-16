@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
+<BorderPane fx:controller="agh.ics.oop.presenter.SimulationPresenter"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            minHeight="550.0" minWidth="850.0"
+            fx:id="mainPane">
+
+    <top>
+        <StackPane style="-fx-alignment: center;">
+            <Label text="Rozpocznij symulacje" fx:id="infoLabel" style="-fx-font-size: 15; -fx-font-weight: 500"/>
+        </StackPane>
+    </top>
+    <center>
+        <GridPane fx:id="gridMap" style="-fx-alignment: top-center">
+        </GridPane>
+    </center>
+    <right>
+        <VBox spacing="10" minWidth="200" alignment="TOP_CENTER" style="-fx-padding: 0 10;">
+            <Button text="Start" onAction="#startButtonClick">
+            </Button>
+            <TextField fx:id="textCommandLine">
+            </TextField>
+        </VBox>
+    </right>
+    <left>
+        <VBox minWidth="200">
+        </VBox>
+    </left>
+</BorderPane>

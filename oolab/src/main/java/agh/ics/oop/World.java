@@ -41,7 +41,9 @@ public class World {
                 map = new RectangularMap(UUID.randomUUID(), 4, 4);
             }
             map.addListener(consoleMapDisplay);
-            out.add(new Simulation(map, positions, directions));
+            var sim = new Simulation(map, positions, directions);
+            sim.prepareGame();
+            out.add(sim);
         }
         return out;
     }
