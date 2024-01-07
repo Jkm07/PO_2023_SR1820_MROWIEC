@@ -17,22 +17,24 @@ public class IntegrationTest {
 
 
         Animal animal = new Animal();
+        WorldMap map = new RectangularMap(4, 4);
+        map.place(animal);
         Assertions.assertEquals(animal.getDirection(), MapDirection.NORTH);
         Vector2d constPosition = animal.getPosition();
 
-        animal.move((MoveDirection) result[0]);
+        animal.move((MoveDirection) result[0], map);
         Assertions.assertEquals(MapDirection.EAST, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
 
-        animal.move((MoveDirection) result[1]);
+        animal.move((MoveDirection) result[1], map);
         Assertions.assertEquals(MapDirection.SOUTH, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
 
-        animal.move((MoveDirection) result[2]);
+        animal.move((MoveDirection) result[2], map);
         Assertions.assertEquals(MapDirection.WEST, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
 
-        animal.move((MoveDirection) result[3]);
+        animal.move((MoveDirection) result[3], map);
         Assertions.assertEquals(MapDirection.NORTH, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
     }
@@ -48,22 +50,24 @@ public class IntegrationTest {
 
 
         Animal animal = new Animal();
+        WorldMap map = new RectangularMap(4, 4);
+        map.place(animal);
         Assertions.assertEquals(animal.getDirection(), MapDirection.NORTH);
         Vector2d constPosition = animal.getPosition();
 
-        animal.move((MoveDirection) result[0]);
+        animal.move((MoveDirection) result[0], map);
         Assertions.assertEquals(MapDirection.WEST, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
 
-        animal.move((MoveDirection) result[1]);
+        animal.move((MoveDirection) result[1], map);
         Assertions.assertEquals(MapDirection.SOUTH, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
 
-        animal.move((MoveDirection) result[2]);
+        animal.move((MoveDirection) result[2], map);
         Assertions.assertEquals(MapDirection.EAST, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
 
-        animal.move((MoveDirection) result[3]);
+        animal.move((MoveDirection) result[3], map);
         Assertions.assertEquals(MapDirection.NORTH, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
     }
@@ -79,22 +83,24 @@ public class IntegrationTest {
 
 
         Animal animal = new Animal();
+        WorldMap map = new RectangularMap(4, 4);
+        map.place(animal);
         Assertions.assertEquals(animal.getDirection(), MapDirection.NORTH);
         Vector2d constPosition = animal.getPosition();
 
-        animal.move((MoveDirection) result[0]);
+        animal.move((MoveDirection) result[0], map);
         Assertions.assertEquals(MapDirection.EAST, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
 
-        animal.move((MoveDirection) result[1]);
+        animal.move((MoveDirection) result[1], map);
         Assertions.assertEquals(MapDirection.NORTH, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
 
-        animal.move((MoveDirection) result[2]);
+        animal.move((MoveDirection) result[2], map);
         Assertions.assertEquals(MapDirection.WEST, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
 
-        animal.move((MoveDirection) result[3]);
+        animal.move((MoveDirection) result[3], map);
         Assertions.assertEquals(MapDirection.NORTH, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
     }
@@ -110,30 +116,32 @@ public class IntegrationTest {
 
 
         Animal animal = new Animal();
+        WorldMap map = new RectangularMap(4, 4);
+        map.place(animal);
         Assertions.assertEquals(animal.getDirection(), MapDirection.NORTH);
         Vector2d constPosition = animal.getPosition();
 
-        animal.move((MoveDirection) result[0]);
+        animal.move((MoveDirection) result[0], map);
         Assertions.assertEquals(MapDirection.EAST, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
 
-        animal.move((MoveDirection) result[1]);
+        animal.move((MoveDirection) result[1], map);
         Assertions.assertEquals(MapDirection.SOUTH, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
 
-        animal.move((MoveDirection) result[2]);
+        animal.move((MoveDirection) result[2], map);
         Assertions.assertEquals(MapDirection.WEST, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
 
-        animal.move((MoveDirection) result[3]);
+        animal.move((MoveDirection) result[3], map);
         Assertions.assertEquals(MapDirection.SOUTH, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
 
-        animal.move((MoveDirection) result[4]);
+        animal.move((MoveDirection) result[4], map);
         Assertions.assertEquals(MapDirection.EAST, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
 
-        animal.move((MoveDirection) result[5]);
+        animal.move((MoveDirection) result[5], map);
         Assertions.assertEquals(MapDirection.SOUTH, animal.getDirection());
         Assertions.assertEquals(constPosition, animal.getPosition());
     }
@@ -150,21 +158,23 @@ public class IntegrationTest {
 
 
         Animal animal = new Animal();
+        WorldMap map = new RectangularMap(4, 4);
+        map.place(animal);
         Assertions.assertEquals(animal.getDirection(), MapDirection.NORTH);
 
-        animal.move((MoveDirection) result[0]);
+        animal.move((MoveDirection) result[0], map);
         Assertions.assertEquals(MapDirection.NORTH, animal.getDirection());
         Assertions.assertEquals(new Vector2d(2, 3), animal.getPosition());
 
-        animal.move((MoveDirection) result[1]);
+        animal.move((MoveDirection) result[1], map);
         Assertions.assertEquals(MapDirection.NORTH, animal.getDirection());
         Assertions.assertEquals(new Vector2d(2, 4), animal.getPosition());
 
-        animal.move((MoveDirection) result[2]);
+        animal.move((MoveDirection) result[2], map);
         Assertions.assertEquals(MapDirection.NORTH, animal.getDirection());
         Assertions.assertEquals(new Vector2d(2, 4), animal.getPosition());
 
-        animal.move((MoveDirection) result[3]);
+        animal.move((MoveDirection) result[3], map);
         Assertions.assertEquals(MapDirection.NORTH, animal.getDirection());
         Assertions.assertEquals(new Vector2d(2, 3), animal.getPosition());
     }
@@ -180,21 +190,23 @@ public class IntegrationTest {
 
 
         Animal animal = new Animal();
+        WorldMap map = new RectangularMap(4, 4);
+        map.place(animal);
         Assertions.assertEquals(animal.getDirection(), MapDirection.NORTH);
 
-        animal.move((MoveDirection) result[0]);
+        animal.move((MoveDirection) result[0], map);
         Assertions.assertEquals(MapDirection.NORTH, animal.getDirection());
         Assertions.assertEquals(new Vector2d(2, 1), animal.getPosition());
 
-        animal.move((MoveDirection) result[1]);
+        animal.move((MoveDirection) result[1], map);
         Assertions.assertEquals(MapDirection.NORTH, animal.getDirection());
         Assertions.assertEquals(new Vector2d(2, 0), animal.getPosition());
 
-        animal.move((MoveDirection) result[2]);
+        animal.move((MoveDirection) result[2], map);
         Assertions.assertEquals(MapDirection.NORTH, animal.getDirection());
         Assertions.assertEquals(new Vector2d(2, 0), animal.getPosition());
 
-        animal.move((MoveDirection) result[3]);
+        animal.move((MoveDirection) result[3], map);
         Assertions.assertEquals(MapDirection.NORTH, animal.getDirection());
         Assertions.assertEquals(new Vector2d(2, 1), animal.getPosition());
     }
@@ -210,25 +222,27 @@ public class IntegrationTest {
 
 
         Animal animal = new Animal();
+        WorldMap map = new RectangularMap(4, 4);
+        map.place(animal);
         Assertions.assertEquals(animal.getDirection(), MapDirection.NORTH);
 
-        animal.move((MoveDirection) result[0]);
+        animal.move((MoveDirection) result[0], map);
         Assertions.assertEquals(MapDirection.EAST, animal.getDirection());
         Assertions.assertEquals(new Vector2d(2, 2), animal.getPosition());
 
-        animal.move((MoveDirection) result[1]);
+        animal.move((MoveDirection) result[1], map);
         Assertions.assertEquals(MapDirection.EAST, animal.getDirection());
         Assertions.assertEquals(new Vector2d(3, 2), animal.getPosition());
 
-        animal.move((MoveDirection) result[2]);
+        animal.move((MoveDirection) result[2], map);
         Assertions.assertEquals(MapDirection.EAST, animal.getDirection());
         Assertions.assertEquals(new Vector2d(4, 2), animal.getPosition());
 
-        animal.move((MoveDirection) result[3]);
+        animal.move((MoveDirection) result[3], map);
         Assertions.assertEquals(MapDirection.EAST, animal.getDirection());
         Assertions.assertEquals(new Vector2d(4, 2), animal.getPosition());
 
-        animal.move((MoveDirection) result[4]);
+        animal.move((MoveDirection) result[4], map);
         Assertions.assertEquals(MapDirection.EAST, animal.getDirection());
         Assertions.assertEquals(new Vector2d(3, 2), animal.getPosition());
     }
@@ -244,25 +258,27 @@ public class IntegrationTest {
 
 
         Animal animal = new Animal();
+        WorldMap map = new RectangularMap(4, 4);
+        map.place(animal);
         Assertions.assertEquals(animal.getDirection(), MapDirection.NORTH);
 
-        animal.move((MoveDirection) result[0]);
+        animal.move((MoveDirection) result[0], map);
         Assertions.assertEquals(MapDirection.EAST, animal.getDirection());
         Assertions.assertEquals(new Vector2d(2, 2), animal.getPosition());
 
-        animal.move((MoveDirection) result[1]);
+        animal.move((MoveDirection) result[1], map);
         Assertions.assertEquals(MapDirection.EAST, animal.getDirection());
         Assertions.assertEquals(new Vector2d(1, 2), animal.getPosition());
 
-        animal.move((MoveDirection) result[2]);
+        animal.move((MoveDirection) result[2], map);
         Assertions.assertEquals(MapDirection.EAST, animal.getDirection());
         Assertions.assertEquals(new Vector2d(0, 2), animal.getPosition());
 
-        animal.move((MoveDirection) result[3]);
+        animal.move((MoveDirection) result[3], map);
         Assertions.assertEquals(MapDirection.EAST, animal.getDirection());
         Assertions.assertEquals(new Vector2d(0, 2), animal.getPosition());
 
-        animal.move((MoveDirection) result[4]);
+        animal.move((MoveDirection) result[4], map);
         Assertions.assertEquals(MapDirection.EAST, animal.getDirection());
         Assertions.assertEquals(new Vector2d(1, 2), animal.getPosition());
     }

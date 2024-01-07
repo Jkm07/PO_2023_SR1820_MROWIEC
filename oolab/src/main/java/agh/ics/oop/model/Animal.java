@@ -1,17 +1,12 @@
 package agh.ics.oop.model;
 
 public class Animal {
-    private static final int BORDER_TOP = 4;
-    private static final int BORDER_BOTTOM = 0;
-    private static final int BORDER_LEFT = 0;
-    private static final int BORDER_RIGHT = 4;
     private Vector2d _position;
     private MapDirection _direction = MapDirection.NORTH;
 
     public Animal(Vector2d position)
     {
         _position = position;
-        _validMapBorders();
     }
 
     public Animal()
@@ -21,8 +16,12 @@ public class Animal {
 
     @Override
     public String toString() {
-        return  "position=" + _position +
-                ", direction=" + _direction;
+        return  switch (_direction) {
+            case NORTH -> "↑";
+            case SOUTH -> "↓";
+            case WEST -> "←";
+            case EAST -> "→";
+        };
     }
 
     public boolean isAt(Vector2d position)
@@ -30,15 +29,22 @@ public class Animal {
         return _position == position;
     }
 
-    public void move(MoveDirection direction)
+    public void move(MoveDirection direction, MoveValidator validator)
     {
         switch (direction) {
             case LEFT-> _direction = _direction.previous();
             case RIGHT-> _direction = _direction.next();
-            case FORWARD -> _position = _position.add(_direction.toUnitVector());
-            case BACKWARD -> _position = _position.subtract(_direction.toUnitVector());
+            case FORWARD -> {
+                var new_pos = _position.add(_direction.toUnitVector());
+                if(validator.canMoveTo(new_pos))
+                    _position = new_pos;
+            }
+            case BACKWARD -> {
+                var new_pos = _position.subtract(_direction.toUnitVector());
+                if(validator.canMoveTo(new_pos))
+                    _position = new_pos;
+            }
         }
-        _validMapBorders();
     }
 
     public MapDirection getDirection() {
@@ -47,18 +53,5 @@ public class Animal {
 
     public Vector2d getPosition() {
         return _position;
-    }
-
-    private void _validMapBorders()
-    {
-        int x = _position.x();
-        int y = _position.y();
-
-        x = Math.min(x, BORDER_RIGHT);
-        x = Math.max(x, BORDER_LEFT);
-        y = Math.min(y, BORDER_TOP);
-        y = Math.max(y, BORDER_BOTTOM);
-
-        _position = new Vector2d(x, y);
     }
 }
