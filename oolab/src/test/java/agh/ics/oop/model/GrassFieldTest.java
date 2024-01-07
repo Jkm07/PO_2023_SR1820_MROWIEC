@@ -7,13 +7,50 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RectangularMapTest {
+public class GrassFieldTest {
+
     WorldMap map;
     List<Animal> animals;
+    final int quantityOfGrass = 10;
     @BeforeEach
     public void beforeEach() {
-        map = new RectangularMap(4, 4);
+        map = new GrassField(quantityOfGrass);
         animals = new ArrayList<>();
+    }
+
+    @Test
+    public void countGrassTest() {
+        int countedGrass = 0;
+        for (int i = -100; i <= 100; i++) {
+            for(int j = -100; j <= 100; j++)
+                if(map.objectAt(new Vector2d(i, j)) instanceof Grass) countedGrass++;
+        }
+        Assertions.assertEquals(quantityOfGrass, countedGrass);
+
+        countedGrass = 0;
+        for (int i = 0; i <= 10; i++) {
+            for(int j = 0; j <= 10; j++)
+                if(map.objectAt(new Vector2d(i, j)) instanceof Grass) countedGrass++;
+        }
+        Assertions.assertEquals(quantityOfGrass, countedGrass);
+    }
+
+    @Test
+    public void assertIsOccupied() {
+        for (int i = 0; i <= 10; i++) {
+            for(int j = 0; j <= 10; j++)
+            {
+                var position = new Vector2d(i, j);
+                if(map.objectAt(position) instanceof Grass) {
+                    var animal = new Animal(position);
+                    map.place(animal);
+                    Assertions.assertInstanceOf(Animal.class, map.objectAt(position));
+                    map.move(animal, MoveDirection.FORWARD);
+                    Assertions.assertInstanceOf(Grass.class, map.objectAt(position));
+                }
+            }
+
+        }
     }
 
     @Test
@@ -99,11 +136,13 @@ public class RectangularMapTest {
 
         map.move(animals.get(0), MoveDirection.FORWARD);
         Assertions.assertEquals(MapDirection.NORTH, animals.get(0).getDirection());
+        currPosition = currPosition.add(new Vector2d(0, 1));
         Assertions.assertEquals(currPosition, animals.get(0).getPosition());
         checkAnimalMapCohesion(animals.get(0));
 
         map.move(animals.get(0), MoveDirection.FORWARD);
         Assertions.assertEquals(MapDirection.NORTH, animals.get(0).getDirection());
+        currPosition = currPosition.add(new Vector2d(0, 1));
         Assertions.assertEquals(currPosition, animals.get(0).getPosition());
         checkAnimalMapCohesion(animals.get(0));
     }
@@ -136,11 +175,13 @@ public class RectangularMapTest {
 
         map.move(animals.get(0), MoveDirection.FORWARD);
         Assertions.assertEquals(MapDirection.EAST, animals.get(0).getDirection());
+        currPosition = currPosition.add(new Vector2d(1, 0));
         Assertions.assertEquals(currPosition, animals.get(0).getPosition());
         checkAnimalMapCohesion(animals.get(0));
 
         map.move(animals.get(0), MoveDirection.FORWARD);
         Assertions.assertEquals(MapDirection.EAST, animals.get(0).getDirection());
+        currPosition = currPosition.add(new Vector2d(1, 0));
         Assertions.assertEquals(currPosition, animals.get(0).getPosition());
         checkAnimalMapCohesion(animals.get(0));
     }
@@ -173,11 +214,13 @@ public class RectangularMapTest {
 
         map.move(animals.get(0), MoveDirection.BACKWARD);
         Assertions.assertEquals(MapDirection.EAST, animals.get(0).getDirection());
+        currPosition = currPosition.add(new Vector2d(-1, 0));
         Assertions.assertEquals(currPosition, animals.get(0).getPosition());
         checkAnimalMapCohesion(animals.get(0));
 
         map.move(animals.get(0), MoveDirection.BACKWARD);
         Assertions.assertEquals(MapDirection.EAST, animals.get(0).getDirection());
+        currPosition = currPosition.add(new Vector2d(-1, 0));
         Assertions.assertEquals(currPosition, animals.get(0).getPosition());
         checkAnimalMapCohesion(animals.get(0));
     }
@@ -204,11 +247,13 @@ public class RectangularMapTest {
 
         map.move(animals.get(0), MoveDirection.BACKWARD);
         Assertions.assertEquals(MapDirection.NORTH, animals.get(0).getDirection());
+        currPosition = currPosition.add(new Vector2d(0, -1));
         Assertions.assertEquals(currPosition, animals.get(0).getPosition());
         checkAnimalMapCohesion(animals.get(0));
 
         map.move(animals.get(0), MoveDirection.BACKWARD);
         Assertions.assertEquals(MapDirection.NORTH, animals.get(0).getDirection());
+        currPosition = currPosition.add(new Vector2d(0, -1));
         Assertions.assertEquals(currPosition, animals.get(0).getPosition());
         checkAnimalMapCohesion(animals.get(0));
     }
@@ -306,7 +351,6 @@ public class RectangularMapTest {
         checkAnimalMapCohesion(animals.get(0));
         checkAnimalMapCohesion(animals.get(1));
     }
-
     private void checkAnimalMapCohesion(Animal animal) {
         Assertions.assertEquals(animal, map.objectAt(animal.getPosition()));
     }
