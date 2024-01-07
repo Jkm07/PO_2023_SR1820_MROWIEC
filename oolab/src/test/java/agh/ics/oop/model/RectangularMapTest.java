@@ -1,5 +1,6 @@
 package agh.ics.oop.model;
 
+import agh.ics.oop.model.exception.PositionAlreadyOccupiedException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,8 +18,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void rotateRight()
-    {
+    public void rotateRight() throws PositionAlreadyOccupiedException {
 
         animals.add(new Animal());
         map.place(animals.get(0));
@@ -47,8 +47,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void rotateLeft()
-    {
+    public void rotateLeft() throws PositionAlreadyOccupiedException {
 
         animals.add(new Animal());
         map.place(animals.get(0));
@@ -77,8 +76,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void moveToNorth()
-    {
+    public void moveToNorth() throws PositionAlreadyOccupiedException {
 
         animals.add(new Animal());
         map.place(animals.get(0));
@@ -109,8 +107,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void moveToEast()
-    {
+    public void moveToEast() throws PositionAlreadyOccupiedException {
 
         animals.add(new Animal());
         map.place(animals.get(0));
@@ -146,8 +143,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void moveToWest()
-    {
+    public void moveToWest() throws PositionAlreadyOccupiedException {
 
         animals.add(new Animal());
         map.place(animals.get(0));
@@ -183,8 +179,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void moveToSouth()
-    {
+    public void moveToSouth() throws PositionAlreadyOccupiedException {
         animals.add(new Animal());
         map.place(animals.get(0));
         checkAnimalMapCohesion(animals.get(0));
@@ -214,8 +209,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void collisionDetect()
-    {
+    public void collisionDetect() throws PositionAlreadyOccupiedException {
         animals.add(new Animal(new Vector2d(2, 2)));
         animals.add(new Animal(new Vector2d(3, 2)));
         animals.add(new Animal(new Vector2d(1, 2)));
@@ -270,8 +264,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void collisionDetectMove()
-    {
+    public void collisionDetectMove() throws PositionAlreadyOccupiedException {
         animals.add(new Animal(new Vector2d(2, 2)));
         animals.add(new Animal(new Vector2d(2, 3)));
         map.place(animals.get(0));
@@ -305,6 +298,47 @@ public class RectangularMapTest {
         Assertions.assertEquals(new Vector2d(2, 3), animals.get(1).getPosition());
         checkAnimalMapCohesion(animals.get(0));
         checkAnimalMapCohesion(animals.get(1));
+    }
+
+    @Test
+    public void placeErrorTest() throws PositionAlreadyOccupiedException {
+        animals.add(new Animal(new Vector2d(2, 2)));
+        animals.add(new Animal(new Vector2d(2, 2)));
+        Assertions.assertDoesNotThrow(() -> map.place(animals.get(0)));
+        Assertions.assertThrows(PositionAlreadyOccupiedException.class, () -> map.place(animals.get(1)));
+    }
+    @Test
+    public void placeErrorMoveTest() throws PositionAlreadyOccupiedException {
+        animals.add(new Animal(new Vector2d(2, 2)));
+        animals.add(new Animal(new Vector2d(2, 2)));
+        Assertions.assertDoesNotThrow(() -> map.place(animals.get(0)));
+        Assertions.assertThrows(PositionAlreadyOccupiedException.class, () -> map.place(animals.get(1)));
+        map.move(animals.get(0), MoveDirection.FORWARD);
+        Assertions.assertDoesNotThrow(() -> map.place(animals.get(1)));
+    }
+
+    @Test
+    public void moveBeforePlaceTest() {
+        var position = new Vector2d(2, 2);
+        animals.add(new Animal(position));
+        map.move(animals.get(0), MoveDirection.FORWARD);
+        Assertions.assertNotEquals(animals.get(0), map.objectAt(position));
+        Assertions.assertNotEquals(animals.get(0), map.objectAt(position.add(new Vector2d(0, 1))));
+        Assertions.assertEquals(position, animals.get(0).getPosition());
+        Assertions.assertEquals(MapDirection.NORTH, animals.get(0).getDirection());
+        map.move(animals.get(0), MoveDirection.BACKWARD);
+        Assertions.assertNotEquals(animals.get(0), map.objectAt(position));
+        Assertions.assertNotEquals(animals.get(0), map.objectAt(position.add(new Vector2d(0, -1))));
+        Assertions.assertEquals(position, animals.get(0).getPosition());
+        Assertions.assertEquals(MapDirection.NORTH, animals.get(0).getDirection());
+        map.move(animals.get(0), MoveDirection.FORWARD);
+        Assertions.assertNotEquals(animals.get(0), map.objectAt(position));
+        Assertions.assertEquals(position, animals.get(0).getPosition());
+        Assertions.assertEquals(MapDirection.NORTH, animals.get(0).getDirection());
+        map.move(animals.get(0), MoveDirection.FORWARD);
+        Assertions.assertNotEquals(animals.get(0), map.objectAt(position));
+        Assertions.assertEquals(position, animals.get(0).getPosition());
+        Assertions.assertEquals(MapDirection.NORTH, animals.get(0).getDirection());
     }
 
     private void checkAnimalMapCohesion(Animal animal) {

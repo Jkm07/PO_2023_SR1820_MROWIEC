@@ -1,5 +1,7 @@
 package agh.ics.oop.model;
 
+import agh.ics.oop.model.exception.PositionAlreadyOccupiedException;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,22 +10,25 @@ import java.util.stream.Stream;
 public class GrassField extends AbstractWorldMap{
 
     private final Map<Vector2d, Grass> _grassElements;
+    private Vector2d _topRight;
+    private Vector2d _bottomLeft;
 
     public GrassField(int quantityOfGrassFields) {
-        super(null, null);
         _grassElements = new HashMap<>();
         generateGrass(quantityOfGrassFields);
     }
 
     @Override
-    public boolean place(WorldElement element) {
-        if (super.place(element)) {
-            updateSizeOfMap(element.getPosition());
-            return true;
-        }
-        else {
-            return false;
-        }
+    public void place(WorldElement element) throws PositionAlreadyOccupiedException{
+        super.place(element);
+        updateSizeOfMap(element.getPosition());
+    }
+
+    @Override
+    public void move(WorldElement animal, MoveDirection direction) {
+        super.move(animal, direction);
+        var position = animal.getPosition();
+        if (objectAt(position) == animal) updateSizeOfMap(position);
     }
 
     @Override
@@ -38,6 +43,11 @@ public class GrassField extends AbstractWorldMap{
             return element;
         else
             return _grassElements.get(position);
+    }
+
+    @Override
+    public Boundary<Vector2d> getCurrentBounds() {
+        return new Boundary<>(_bottomLeft, _topRight);
     }
 
     @Override
@@ -63,7 +73,7 @@ public class GrassField extends AbstractWorldMap{
 
     private void updateSizeOfMap(Vector2d vector) {
 
-        _maxVector = _maxVector != null ? _maxVector.upperRight(vector) : vector;
-        _minVector = _minVector != null ? _minVector.lowerLeft(vector) : vector;
+        _topRight = _topRight != null ? _topRight.upperRight(vector) : vector;
+        _bottomLeft = _bottomLeft != null ? _bottomLeft.lowerLeft(vector) : vector;
     }
 }

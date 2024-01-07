@@ -13,8 +13,7 @@ public class OptionParser {
         for(var arg : args)
         {
             var move = convertArgument(arg);
-            if(move != null)
-                list.add(move);
+            list.add(move);
         }
         return list;
     }
@@ -26,7 +25,7 @@ public class OptionParser {
             case "b" -> MoveDirection.BACKWARD;
             case "l" -> MoveDirection.LEFT;
             case "r" -> MoveDirection.RIGHT;
-            default -> null;
+            default -> throw new IllegalArgumentException(arg + " is not legal move specification");
         };
     }
 }

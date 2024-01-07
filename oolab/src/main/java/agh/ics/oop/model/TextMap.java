@@ -17,9 +17,8 @@ public class TextMap implements WorldMap<String, Integer>{
     }
 
     @Override
-    public boolean place(String element) {
+    public void place(String element) {
         _elements.add(element);
-        return true;
     }
 
     @Override
@@ -48,6 +47,11 @@ public class TextMap implements WorldMap<String, Integer>{
     @Override
     public String objectAt(Integer position) {
         return positionBelongToList(position) ? _elements.get(position) : null;
+    }
+
+    @Override
+    public Boundary<Integer> getCurrentBounds() {
+        return null;
     }
 
     private boolean positionBelongToList(Integer position) {
