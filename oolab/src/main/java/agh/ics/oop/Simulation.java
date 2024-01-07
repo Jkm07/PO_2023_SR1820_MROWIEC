@@ -8,8 +8,8 @@ import java.util.List;
 public class Simulation {
     private final List<Animal> _animals;
     private final List<MoveDirection> _moves;
-    private final WorldMap _map;
-    public Simulation(WorldMap map, List<Vector2d> vectors, List<MoveDirection> moves)
+    private final WorldMap<Animal, Vector2d> _map;
+    public Simulation(WorldMap<Animal, Vector2d> map, List<Vector2d> vectors, List<MoveDirection> moves)
     {
         _map = map;
         _animals = new ArrayList<>(vectors.size());
@@ -27,6 +27,7 @@ public class Simulation {
             _map.place(a);
         }
         int it = 0;
+        System.out.println(_map);
         for(var move : _moves)
         {
             int idx = it % _animals.size();
