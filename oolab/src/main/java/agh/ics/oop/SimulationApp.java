@@ -26,6 +26,7 @@ public class SimulationApp extends Application{
 
         var map = new GrassField(UUID.randomUUID(), 10);
         map.addListener(new ConsoleMapDisplay());
+        map.addListener(new FileMapDisplay());
         map.addListener((mapLambda, message) -> System.out.println(new Date() + " " + message));
         presenter.setWorldMap(map);
         primaryStage.show();

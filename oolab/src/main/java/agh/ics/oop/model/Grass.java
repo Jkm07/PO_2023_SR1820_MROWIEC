@@ -14,6 +14,17 @@ public class Grass implements WorldElement{
     public boolean isAt(Vector2d position) {
         return _position == position;
     }
+
+    @Override
+    public String getImagePath() {
+        return "img/grass.png";
+    }
+
+    @Override
+    public String getLabel() {
+        return "Trawa";
+    }
+
     @Override
     public String toString() {
         return "*";

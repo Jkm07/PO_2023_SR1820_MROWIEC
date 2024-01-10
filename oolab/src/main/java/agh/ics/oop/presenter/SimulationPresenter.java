@@ -50,7 +50,7 @@ public class SimulationPresenter implements MapChangeListener {
     @Override
     public void mapChanged(WorldMap worldMap, String message) {
         Platform.runLater(() -> infoLabel.setText(message));
-        if ( worldMap instanceof  AbstractWorldMap) {
+        if ( worldMap instanceof AbstractWorldMap) {
             Platform.runLater(() -> drawGrid((AbstractWorldMap) worldMap));
         }
     }
@@ -74,7 +74,7 @@ public class SimulationPresenter implements MapChangeListener {
             for(var col = bounds.bottomLeft().x(); col <= bounds.topRight().x(); ++col)
             {
                 var object = worldMap.objectAt(new Vector2d(col, row));
-                var cell = createCell(object.isPresent() ? object.get().toString() : "");
+                var cell = object.map(WorldElementBox::new).map(WorldElementBox::getVbox).orElse(createCell(""));
                 gridMap.add(cell, grid_col, grid_row);
                 grid_col++;
             }
