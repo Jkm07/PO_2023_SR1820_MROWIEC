@@ -5,6 +5,7 @@ import agh.ics.oop.model.exception.PositionAlreadyOccupiedException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 public class GrassField extends AbstractWorldMap{
@@ -13,7 +14,14 @@ public class GrassField extends AbstractWorldMap{
     private Vector2d _topRight;
     private Vector2d _bottomLeft;
 
+    public GrassField(UUID id, int quantityOfGrassFields) {
+        super(id);
+        _grassElements = new HashMap<>();
+        generateGrass(quantityOfGrassFields);
+    }
+
     public GrassField(int quantityOfGrassFields) {
+        super(UUID.randomUUID());
         _grassElements = new HashMap<>();
         generateGrass(quantityOfGrassFields);
     }

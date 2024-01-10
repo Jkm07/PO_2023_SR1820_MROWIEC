@@ -2,6 +2,8 @@ package agh.ics.oop.model;
 
 import agh.ics.oop.model.exception.PositionAlreadyOccupiedException;
 
+import java.util.UUID;
+
 /**
  * The interface responsible for interacting with the map of the world.
  * Assumes that Vector2d and MoveDirection classes are defined.
@@ -43,4 +45,6 @@ public interface WorldMap<T, P> extends MoveValidator {
     T objectAt(P position);
 
     Boundary<P> getCurrentBounds();
+
+    UUID getId();
 }

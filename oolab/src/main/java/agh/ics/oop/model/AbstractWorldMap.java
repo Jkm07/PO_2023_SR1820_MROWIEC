@@ -10,12 +10,14 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
     protected final Map<Vector2d, WorldElement> _elements;
     private final MapVisualizer _visualizer;
     private final HashSet<MapChangeListener> _listeners;
+    private final UUID _id;
 
-    public AbstractWorldMap()
+    public AbstractWorldMap(UUID id)
     {
         _visualizer = new MapVisualizer(this);
         _elements = new HashMap<>();
         _listeners = new HashSet<>();
+        _id = id;
     }
     @Override
     public boolean canMoveTo(Vector2d position) {
@@ -55,6 +57,11 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
     @Override
     public WorldElement objectAt(Vector2d position) {
         return _elements.get(position);
+    }
+
+    @Override
+    public UUID getId() {
+        return _id;
     }
 
     @Override
