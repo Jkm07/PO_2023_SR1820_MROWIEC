@@ -37,7 +37,7 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
     @Override
     public void move(WorldElement animal, MoveDirection direction) {
         var oldPosition = animal.getPosition();
-        if (objectAt(oldPosition) != animal) return;
+        if (objectAt(oldPosition).orElse(null) != animal) return;
         animal.move(direction, this);
         var newPosition = animal.getPosition();
         if (oldPosition == newPosition) {
@@ -55,8 +55,9 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
     }
 
     @Override
-    public WorldElement objectAt(Vector2d position) {
-        return _elements.get(position);
+    public Optional<WorldElement> objectAt(Vector2d position) {
+
+        return Optional.ofNullable(_elements.get(position));
     }
 
     @Override
@@ -105,5 +106,13 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
         for(var l : _listeners) {
             l.mapChanged(this, message);
         }
+    }
+
+    @Override
+    public List<WorldElement> getOrderedAnimals()
+    {
+        return _elements.keySet().stream()
+                .sorted(Comparator.comparing(Vector2d::x).thenComparing(Vector2d::y))
+                .map(_elements::get).toList();
     }
 }

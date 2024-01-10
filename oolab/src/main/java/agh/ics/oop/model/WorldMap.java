@@ -2,6 +2,8 @@ package agh.ics.oop.model;
 
 import agh.ics.oop.model.exception.PositionAlreadyOccupiedException;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -42,9 +44,11 @@ public interface WorldMap<T, P> extends MoveValidator {
      * @param position The position of the animal.
      * @return animal or null if the position is not occupied.
      */
-    T objectAt(P position);
+    Optional<T> objectAt(P position);
 
     Boundary<P> getCurrentBounds();
 
     UUID getId();
+
+    List<T> getOrderedAnimals();
 }

@@ -74,7 +74,7 @@ public class SimulationPresenter implements MapChangeListener {
             for(var col = bounds.bottomLeft().x(); col <= bounds.topRight().x(); ++col)
             {
                 var object = worldMap.objectAt(new Vector2d(col, row));
-                var cell = createCell(object != null ? object.toString() : "");
+                var cell = createCell(object.isPresent() ? object.get().toString() : "");
                 gridMap.add(cell, grid_col, grid_row);
                 grid_col++;
             }

@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,6 +26,7 @@ public class SimulationApp extends Application{
 
         var map = new GrassField(UUID.randomUUID(), 10);
         map.addListener(new ConsoleMapDisplay());
+        map.addListener((mapLambda, message) -> System.out.println(new Date() + " " + message));
         presenter.setWorldMap(map);
         primaryStage.show();
 
