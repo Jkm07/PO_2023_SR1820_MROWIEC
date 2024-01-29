@@ -322,26 +322,26 @@ public class RectangularMapTest {
         var position = new Vector2d(2, 2);
         animals.add(new Animal(position));
         map.move(animals.get(0), MoveDirection.FORWARD);
-        Assertions.assertNotEquals(animals.get(0), map.objectAt(position));
-        Assertions.assertNotEquals(animals.get(0), map.objectAt(position.add(new Vector2d(0, 1))));
+        Assertions.assertNotEquals(animals.get(0), map.objectAt(position).orElse(null));
+        Assertions.assertNotEquals(animals.get(0), map.objectAt(position.add(new Vector2d(0, 1))).orElse(null));
         Assertions.assertEquals(position, animals.get(0).getPosition());
         Assertions.assertEquals(MapDirection.NORTH, animals.get(0).getDirection());
         map.move(animals.get(0), MoveDirection.BACKWARD);
-        Assertions.assertNotEquals(animals.get(0), map.objectAt(position));
-        Assertions.assertNotEquals(animals.get(0), map.objectAt(position.add(new Vector2d(0, -1))));
+        Assertions.assertNotEquals(animals.get(0), map.objectAt(position).orElse(null));
+        Assertions.assertNotEquals(animals.get(0), map.objectAt(position.add(new Vector2d(0, -1))).orElse(null));
         Assertions.assertEquals(position, animals.get(0).getPosition());
         Assertions.assertEquals(MapDirection.NORTH, animals.get(0).getDirection());
         map.move(animals.get(0), MoveDirection.FORWARD);
-        Assertions.assertNotEquals(animals.get(0), map.objectAt(position));
+        Assertions.assertNotEquals(animals.get(0), map.objectAt(position).orElse(null));
         Assertions.assertEquals(position, animals.get(0).getPosition());
         Assertions.assertEquals(MapDirection.NORTH, animals.get(0).getDirection());
         map.move(animals.get(0), MoveDirection.FORWARD);
-        Assertions.assertNotEquals(animals.get(0), map.objectAt(position));
+        Assertions.assertNotEquals(animals.get(0), map.objectAt(position).orElse(null));
         Assertions.assertEquals(position, animals.get(0).getPosition());
         Assertions.assertEquals(MapDirection.NORTH, animals.get(0).getDirection());
     }
 
     private void checkAnimalMapCohesion(Animal animal) {
-        Assertions.assertEquals(animal, map.objectAt(animal.getPosition()));
+        Assertions.assertEquals(animal, map.objectAt(animal.getPosition()).orElse(null));
     }
 }

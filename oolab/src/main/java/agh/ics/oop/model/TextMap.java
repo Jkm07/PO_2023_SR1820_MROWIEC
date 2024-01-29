@@ -2,6 +2,7 @@ package agh.ics.oop.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class TextMap implements WorldMap<String, Integer>{
@@ -46,8 +47,8 @@ public class TextMap implements WorldMap<String, Integer>{
     }
 
     @Override
-    public String objectAt(Integer position) {
-        return positionBelongToList(position) ? _elements.get(position) : null;
+    public Optional<String> objectAt(Integer position) {
+        return positionBelongToList(position) ? Optional.of(_elements.get(position)) : Optional.empty();
     }
 
     @Override
@@ -58,6 +59,11 @@ public class TextMap implements WorldMap<String, Integer>{
     @Override
     public UUID getId() {
         return null;
+    }
+
+    @Override
+    public List<String> getOrderedAnimals() {
+        return _elements.stream().sorted().toList();
     }
 
     private boolean positionBelongToList(Integer position) {

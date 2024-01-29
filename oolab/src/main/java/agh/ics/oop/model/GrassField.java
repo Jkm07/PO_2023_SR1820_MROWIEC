@@ -2,10 +2,7 @@ package agh.ics.oop.model;
 
 import agh.ics.oop.model.exception.PositionAlreadyOccupiedException;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class GrassField extends AbstractWorldMap{
@@ -36,7 +33,7 @@ public class GrassField extends AbstractWorldMap{
     public void move(WorldElement animal, MoveDirection direction) {
         super.move(animal, direction);
         var position = animal.getPosition();
-        if (objectAt(position) == animal) updateSizeOfMap(position);
+        if (objectAt(position).orElse(null) == animal) updateSizeOfMap(position);
     }
 
     @Override
@@ -45,12 +42,12 @@ public class GrassField extends AbstractWorldMap{
     }
 
     @Override
-    public WorldElement objectAt(Vector2d position) {
+    public Optional<WorldElement> objectAt(Vector2d position) {
         var element = super.objectAt(position);
-        if (element != null)
+        if (element.isPresent())
             return element;
         else
-            return _grassElements.get(position);
+            return Optional.ofNullable(_grassElements.get(position));
     }
 
     @Override
@@ -58,7 +55,7 @@ public class GrassField extends AbstractWorldMap{
         return new Boundary<>(_bottomLeft, _topRight);
     }
 
-    @Override
+    @Override //to juz bylo zrobione :)
     public Collection<WorldElement> getElements() {
         return Stream.concat(super.getElements().stream(), _grassElements.values().stream()).toList();
     }

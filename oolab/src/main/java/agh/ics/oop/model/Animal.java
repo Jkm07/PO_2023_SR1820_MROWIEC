@@ -49,6 +49,21 @@ public class Animal implements WorldElement{
         }
     }
 
+    @Override
+    public String getImagePath() {
+        return switch (_direction) {
+            case NORTH -> "img/up.png";
+            case SOUTH -> "img/down.png";
+            case WEST -> "img/left.png";
+            case EAST -> "img/right.png";
+        };
+    }
+
+    @Override
+    public String getLabel() {
+        return _position.toString();
+    }
+
     public MapDirection getDirection() {
         return _direction;
     }
